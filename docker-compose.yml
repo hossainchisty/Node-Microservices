@@ -1,0 +1,23 @@
+version: "3"
+services:
+  chat:
+    build:
+      context: ./chat
+    ports:
+      - 3001:3000
+  video:
+    build:
+      context: ./video
+    ports:
+      - 3002:3000
+  feed:
+    build:
+      context: ./feed
+    ports:
+      - 3003:3000
+  loadbalancer:
+    image: nginx
+    ports:
+      - 80:80
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
